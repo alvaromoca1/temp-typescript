@@ -18,3 +18,10 @@ install: ##@Global install dependencies.
 		-v "${PWD}/${APP_DIR}":/${APP_DIR} \
 		${IMAGE_BUILD} \
 		yarn install
+
+test: ##@Test source code.
+	docker container run --workdir "/${APP_DIR}" --rm -it \
+		-u ${UID_LOCAL}:${GID_LOCAL} \
+		-v "${PWD}/${APP_DIR}":/${APP_DIR} \
+		${IMAGE_BUILD} \
+		yarn test:watch
